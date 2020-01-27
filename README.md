@@ -23,10 +23,6 @@ Ex: ./setup_k8s.sh kafka "10.10.1"
 ### Cleanup cluster
 
 ```bash
-pushd k8s-cluster/<name>
-vagrant destroy -f
-popd
-
-rm -rf kubespray/inventory/<name>
-rm -rf k8s-cluster/<name>
+./cleanup_k8s.sh <name>
+Ex: ./cleanup_k8s.sh kafka
 ```
