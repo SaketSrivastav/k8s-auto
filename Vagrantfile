@@ -31,7 +31,7 @@ $vm_memory = 4096
 $vm_cpus = 1
 $shared_folders = {}
 $forwarded_ports = {}
-$subnet = ""
+$subnet = "10.10.1"
 $os = "ubuntu1804"
 $network_plugin = "flannel"
 # The first three nodes are etcd servers
@@ -138,6 +138,8 @@ Vagrant.configure("2") do |config|
       config.vm.provision "shell" do |s|
         ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
         s.inline = <<-SHELL
+          mkdir -p /home/vagrant/.ssh/ && touch /home/vagrant/.ssh/authorized_keys
+          mkdir -p /root/.ssh/ && touch /root/.ssh/authorized_keys
           echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
           echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
         SHELL

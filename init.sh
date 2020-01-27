@@ -16,7 +16,7 @@ adduser $USER libvirt
 systemctl enable libvirtd
 systemctl restart libvirtd
 
-default_pool=$("virsh pool-list --name | grep default")
+default_pool=$(virsh pool-list --name | grep default)
 if [[ -z $default_pool ]]; then
     virsh pool-define /dev/stdin <<EOF
       <pool type='dir'>
@@ -33,13 +33,13 @@ fi
 # Install Vagrant and vagrant libvirt plugin
 adduser $USER vagrant
 
-is_vagrant_plugin_installed=$("vagrant plugin list | grep -o libvirt")
+is_vagrant_plugin_installed=$(vagrant plugin list | grep -o libvirt)
 if [[ -z $is_vagrant_plugin_installed ]]; then
     vagrant plugin install vagrant-libvirt
 fi
 
 # Setup ssh keys for passwordless login to cluster
-if [ -f $HOME/.ssh/id_rsa ]; then
+if ! [ -f $HOME/.ssh/id_rsa ]; then
     ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa
 fi
 
