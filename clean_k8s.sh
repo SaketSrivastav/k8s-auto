@@ -14,8 +14,8 @@ if [[ -d k8s-cluster/$name ]]; then
     echo "==> Shutting down vagrant vms"
     pushd k8s-cluster/$name
     vagrant destroy -f
-    #sudo rm -rf /var/lib/libvirt/images/$name*
-    #rm -rf k8s-cluster/$name
+    sudo rm -rf /var/lib/libvirt/images/$name*
+    rm -rf k8s-cluster/$name
     popd
 else
     echo "==> Skip k8s-cluster removal"
