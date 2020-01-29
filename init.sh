@@ -7,8 +7,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 apt update
-apt install -y python python-pip vim curl
-apt install -y x2goserver x2goserver-session firefox
+apt install -y python python-pip python3 python3-pip vim curl vagrant
+apt install -y x2goserver x2goserver-xsession firefox
 
 # Install libvirt and kvm only if virtualbox is not installed
 if ! [ -x $(hash vboxmanage 2>/dev/null) ];
@@ -49,6 +49,7 @@ if ! [ -f $HOME/.ssh/id_rsa ]; then
 fi
 
 # Setup kubespray
+pip3 install ruamel_yaml
 git submodule update --init
 cd kubespray
 pip install -r requirements.txt
