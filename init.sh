@@ -46,7 +46,7 @@ adduser ubuntu vagrant
 
 # Setup ssh keys for passwordless login to cluster
 if ! [ -f $HOME/.ssh/id_rsa ]; then
-    ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa
+    ssh-keygen -q -t rsa -N '' -f $HOME/.ssh/id_rsa
 fi
 
 # Setup kubespray

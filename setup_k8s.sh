@@ -19,6 +19,11 @@ then
     fi
 fi
 
+# Setup ssh keys for passwordless login to cluster
+if ! [ -f $HOME/.ssh/id_rsa ]; then
+    ssh-keygen -q -t rsa -N '' -f $HOME/.ssh/id_rsa
+fi
+
 name=$1
 node_subnet=$2
 
