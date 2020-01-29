@@ -42,6 +42,7 @@ fi
 
 # Install Vagrant and vagrant libvirt plugin
 adduser $USER vagrant
+adduser ubuntu vagrant
 
 # Setup ssh keys for passwordless login to cluster
 if ! [ -f $HOME/.ssh/id_rsa ]; then
